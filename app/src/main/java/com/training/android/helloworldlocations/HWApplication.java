@@ -23,6 +23,6 @@ public class HWApplication extends android.app.Application
     public void onCreate() {
         super.onCreate();
         instance = this;
-        LocationHelper.getInstance();
+//        LocationHelper.getInstance();
     }
 }

@@ -37,18 +37,11 @@ public class LocationHelper implements GoogleApiClient.ConnectionCallbacks, Goog
         if(instance == null) {
             instance = new LocationHelper();
         }
+        
         return instance;
     }
 
-    public static LocationHelper getInstance(GetLocationListener getLocationListener) {
-        if(instance == null) {
-            instance = new LocationHelper();
-        }
-        instance.getLocationListener = getLocationListener;
-        return instance;
-    }
-
-    private synchronized void buildGoogleApiClient() {
+    public synchronized void buildGoogleApiClient() {
         Log.i(TAG, "Attempting to build GoogleApiClient object");
         if(GooglePlayServicesUtil.isGooglePlayServicesAvailable(HWApplication.getInstance()) == ConnectionResult.SUCCESS) {
             Log.i(TAG, "Google play services are installed and available on this device");

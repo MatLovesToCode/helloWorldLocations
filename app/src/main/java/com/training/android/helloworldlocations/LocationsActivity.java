@@ -28,7 +28,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 
-public class LocationsActivity extends FragmentActivity implements OnMapReadyCallback, GetLocationListener
+public class LocationsActivity extends FragmentActivity implements OnMapReadyCallback
 {
 
     public static final String HELLO_WORLD_URL = "http://www.helloworld.com/helloworld_locations.json";
@@ -37,6 +37,7 @@ public class LocationsActivity extends FragmentActivity implements OnMapReadyCal
     private LocationAdapter adapter;
     private GoogleMap map;
     private boolean mapIsReady;
+    private LatLng currentLatLng;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -50,6 +51,7 @@ public class LocationsActivity extends FragmentActivity implements OnMapReadyCal
         MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.location_map);
         mapFragment.getMapAsync(this);
         new NearbyLocationLoader().execute();
+        new LastLocationLoader().execute();
     }
 
     @Override
@@ -87,6 +89,8 @@ public class LocationsActivity extends FragmentActivity implements OnMapReadyCal
                 {
                     try
                     {
+                        currentLatLng = new LatLng(LocationHelper.getLastLocation().getLatitude(), LocationHelper.getLastLocation().getLongitude());
+
                         URL url = new URL(HELLO_WORLD_URL);
                         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                         conn.setReadTimeout(10000 /* milliseconds */);
@@ -147,24 +151,44 @@ public class LocationsActivity extends FragmentActivity implements OnMapReadyCal
                     LatLng location = new LatLng(l.getLatitude(), l.getLongitude());
                     map.addMarker(new MarkerOptions().position(location).snippet(""+l.getName()));
                 }
+                LatLng userLocation = new LatLng(42.3314, 83.0458);
+                map.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 12));
             }
-
-            while(LocationHelper.getLastLocation()==null){
-
-            }
-
-            adapter = new LocationAdapter(getBaseContext(), R.layout.location_list_item, helloWorldLocations);
-            locationListView.setAdapter(adapter);
-            LatLng currentLatLng = new LatLng(LocationHelper.getLastLocation().getLatitude(), LocationHelper.getLastLocation().getLongitude());
-            map.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 12));
-
 
         }
     }
 
-    public void doOnComplete()
-    {
 
+    private class LastLocationLoader extends AsyncTask<Void, Void, Void>
+    {
+        @Override
+        protected Void doInBackground(Void... voids)
+        {
+            ConnectivityManager connMgr = (ConnectivityManager) getBaseContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+            if (networkInfo != null && networkInfo.isConnected())
+            {
+                try
+                {
+                    LocationHelper.getInstance();
+                    LocationHelper.
+                } catch (Exception e)
+                {
+                    Log.d("exception", "the error = " + e.getMessage());
+                }
+            }
+            return null;
+        }
+
+        protected void onPostExecute (Void result)
+        {
+            currentLatLng = new LatLng(LocationHelper.getLastLocation().getLatitude(), LocationHelper.getLastLocation().getLongitude());
+            adapter = new LocationAdapter(getBaseContext(), R.layout.location_list_item, helloWorldLocations);
+            locationListView.setAdapter(adapter);
+            map.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 12));
+
+
+        }
     }
 
 }
