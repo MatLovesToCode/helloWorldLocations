@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-panorama/7.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="565a01f90f1529f73362707c4c185d0623a68782">
+        <dex dex="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/pre-dexed/debug/classes-1b3bea83a9b2dc46a671405cfba3a51431a2d4a3.jar" />
+    </item>
+    <item
+        jar="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/7.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="3988694bf9d8186ff97ad5cdfa4ed88b5010fe08">
+        <dex dex="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/pre-dexed/debug/classes-1aa0cb58953b8fc75c46d73a359e4ab4198dda60.jar" />
+    </item>
+    <item
+        jar="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/7.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="f2f7ec211ce4d244ee97a57523eeb4526dc3cf8a">
+        <dex dex="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/pre-dexed/debug/classes-3f757d9f12c389f66c6c572156ac10d03ea6a2de.jar" />
+    </item>
+    <item
+        jar="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gcm/7.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="7215ac1f2fca947b9415a6ee2a1bf991364aab24">
+        <dex dex="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/pre-dexed/debug/classes-c2e193497343e2d09f7b9b81979c210ddc3dee05.jar" />
+    </item>
+    <item
+        jar="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/7.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="b2c07cdb814fe988ad05f7b4d767a841514a5991">
+        <dex dex="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/pre-dexed/debug/classes-b0d46b25012032a1e71a72d440fe3604342b28ab.jar" />
+    </item>
+    <item
+        jar="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/7.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="6046e5cdaf799120b7c56a5a061d80e8854c4d34">
+        <dex dex="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/pre-dexed/debug/classes-a7b530c07758434f418ade5f03975acc3b29e311.jar" />
+    </item>
+    <item
+        jar="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appinvite/7.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="bb36004beb02b69562cbec9aa7d6a3cf16bf5d1b">
+        <dex dex="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/pre-dexed/debug/classes-d2aa3cbab0a5b074b646b82dcec931421c094343.jar" />
+    </item>
+    <item
+        jar="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-identity/7.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="b48d5c51a9a9e329005106b4667f54948de4d4d8">
+        <dex dex="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/pre-dexed/debug/classes-973defc9668779751aa80aa42b45ecb430071d04.jar" />
+    </item>
+    <item
+        jar="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/7.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="fe3e0c6de7cceed888b277487238b6af9a1cc299">
+        <dex dex="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/pre-dexed/debug/classes-e6771837b405e8e04fd6b5cbe424a7275f17893b.jar" />
+    </item>
+    <item
+        jar="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c95ba8152923e4872e86a82cfcba9a51c0214328">
+        <dex dex="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/pre-dexed/debug/classes-811f59d4d2f236a29a80cb6374170b869343bb53.jar" />
+    </item>
+    <item
+        jar="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-safetynet/7.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="0708ef60917bf94913fe9ef972a655b99462dca7">
+        <dex dex="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/pre-dexed/debug/classes-20fc879ce41a5fbdda246e560dc7ca9b7e4d1577.jar" />
+    </item>
+    <item
+        jar="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-drive/7.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a0ce76dfaccbfbd6c551ed2174280aaabe60fe47">
+        <dex dex="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/pre-dexed/debug/classes-7ef5b7436819997635640ed1f40ebc50ae935ad0.jar" />
+    </item>
+    <item
+        jar="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a3ff3c506644c820eb2bdf06e8339f72be578551">
+        <dex dex="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/pre-dexed/debug/classes-7a0c1225140efb2b459aa06897ad89529c9e2a3a.jar" />
+    </item>
+    <item
+        jar="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-plus/7.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="59652857a825fff0de62166fca1bc9553cc01abb">
+        <dex dex="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/pre-dexed/debug/classes-27f378d3dee308fd45febde61151a92b143a7b63.jar" />
+    </item>
+    <item
+        jar="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wearable/7.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e5bf453b070c1e39297986144960e45afa0fdfad">
+        <dex dex="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/pre-dexed/debug/classes-ff917c815c3d5e58b3ebc2244ff57f308c560ed3.jar" />
+    </item>
+    <item
+        jar="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/7.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e35fae1b377c23aa5fd2d309a190c2d0f73d54ec">
+        <dex dex="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/pre-dexed/debug/classes-4c6a790886f46444ff3e8cfe4e79b5c4ab721801.jar" />
+    </item>
+    <item
+        jar="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-nearby/7.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="5ea948d825957be6c4358c48422bee60eef2d487">
+        <dex dex="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/pre-dexed/debug/classes-321c49f1b299ede67b7adb3aa04a7c315de1fb5d.jar" />
+    </item>
+    <item
+        jar="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appstate/7.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="0180d031a7b54dabb93b4af3869468b55dc938bd">
+        <dex dex="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/pre-dexed/debug/classes-bb383d576eb532fd3b8bc7383bd958cc4b382b39.jar" />
+    </item>
+    <item
+        jar="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/7.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="9c9dea9e85aceb09d95df5e6f7bc8a43fc286068">
+        <dex dex="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/pre-dexed/debug/classes-f31d4a5f247b482921b1c8c2bd46f5298f5e62ca.jar" />
+    </item>
+    <item
+        jar="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast/7.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e5b9f5b0aa8dee788beb63d23832cb29ce771343">
+        <dex dex="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/pre-dexed/debug/classes-11fdd61208c7dca8dffcb8b6333ff11fc0d3430f.jar" />
+    </item>
+    <item
+        jar="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-fitness/7.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="4f4fe3c23776540625f3c2844152a7510fddf9f1">
+        <dex dex="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/pre-dexed/debug/classes-d4d482bdd7c702ee0535d24800a94d3c7f67ebe0.jar" />
+    </item>
+    <item
+        jar="/Users/mwszedybyl/Documents/sdk/extras/android/m2repository/com/android/support/support-annotations/22.1.1/support-annotations-22.1.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="01d051a6bfb1218b1db2d3a5af0480ac2c25c42a">
+        <dex dex="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/pre-dexed/debug/support-annotations-22.1.1-c4a86fd9416d68cb1724bbe52397e90e8108c3a9.jar" />
+    </item>
+    <item
+        jar="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/jars/libs/internal_impl-22.1.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="9e070ad32b2700b0343e8e0cccc437733d91ba3a">
+        <dex dex="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/pre-dexed/debug/internal_impl-22.1.1-08d7c1e2eb1b4688bea3d12b4007f4e651487d1d.jar" />
+    </item>
+    <item
+        jar="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-games/7.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="3b4ff5c39dace8f3b4ab4cab8191785547a0815f">
+        <dex dex="/Users/mwszedybyl/Documents/development/BrioMenu/untitled_folder/HelloWorldLocations/app/build/intermediates/pre-dexed/debug/classes-6b095da6c62c39d239e7d0400ea39694b083ee46.jar" />
+    </item>
+
+</items>

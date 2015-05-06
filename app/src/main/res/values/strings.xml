@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">HelloWorldLocations</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="helloworld_locations_url">http://www.helloworld.com/helloworld_locations.json</string>
+</resources>
