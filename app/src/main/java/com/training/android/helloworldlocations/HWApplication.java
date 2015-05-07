@@ -2,6 +2,8 @@ package com.training.android.helloworldlocations;
 
 import android.content.SharedPreferences;
 
+import com.training.android.helloworldlocations.data.DBHelper;
+
 /**
  * Created by mwszedybyl on 5/4/15.
  */
@@ -9,6 +11,7 @@ public class HWApplication extends android.app.Application
 {
     private static HWApplication instance;
     private static SharedPreferences sharedPreferences;
+    private static DBHelper dbHelper;
 
     public HWApplication() {
         super();
@@ -29,6 +32,18 @@ public class HWApplication extends android.app.Application
         LocationHelper.getInstance();
         sharedPreferences = getSharedPreferences(Settings.FILE_NAME, MODE_PRIVATE);
 
+        dbHelper = DBHelper.getInstance(this);
+        dbHelper.createOrOpenDatabase();
+        dbHelper.close();
+
+    }
+
+    public static DBHelper getDBHelper()
+    {
+        if (dbHelper == null) {
+            dbHelper = DBHelper.getInstance(instance);
+        }
+        return dbHelper;
     }
 
     public static SharedPreferences getSharedPreferences(){

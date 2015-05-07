@@ -17,6 +17,7 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.training.android.helloworldlocations.data.DBHelper;
 import com.training.android.helloworldlocations.models.HWLocation;
 
 import org.json.JSONArray;
@@ -27,6 +28,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class LocationsActivity extends FragmentActivity implements OnMapReadyCallback, MapListener
@@ -39,23 +41,42 @@ public class LocationsActivity extends FragmentActivity implements OnMapReadyCal
     private GoogleMap map;
     private boolean mapIsReady;
     private LatLng currentLatLng;
+    private DBHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         LocationHelper.setMapListener(this);
-
         setContentView(R.layout.activity_locations);
         helloWorldLocations = new ArrayList<>();
         locationListView = (ListView) findViewById(R.id.locations_listview);
-
         MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.location_map);
         mapFragment.getMapAsync(this);
-        new NearbyLocationLoader().execute();
         currentLatLng = new LatLng(42.474636, -83.143986);
-
         mapIsReady = false;
+        checkDbLocations();
+
+    }
+
+    private void checkDbLocations(){
+        try{
+            dbHelper = HWApplication.getDBHelper();
+            dbHelper.createOrOpenDatabase();
+            HashMap<Integer, HWLocation> dbLocations = dbHelper.getAllLocations();
+            helloWorldLocations = new ArrayList<>(dbLocations.values());
+            if(helloWorldLocations.size()!=0){
+                adapter = new LocationAdapter(getBaseContext(), R.layout.location_list_item, helloWorldLocations);
+                locationListView.setAdapter(adapter);
+            } else {
+                new NearbyLocationLoader().execute();
+            }
+        } catch(Exception e){
+            e.printStackTrace();
+        } finally
+        {
+            dbHelper.close();
+        }
     }
 
     @Override
@@ -77,6 +98,11 @@ public class LocationsActivity extends FragmentActivity implements OnMapReadyCal
         mapIsReady = true;
         this.map = map;
         map.setMyLocationEnabled(true);
+        for (HWLocation l : helloWorldLocations)
+        {
+            LatLng location = new LatLng(l.getLatitude(), l.getLongitude());
+            map.addMarker(new MarkerOptions().position(location).snippet(""+l.getName()));
+        }
     }
 
     @Override
@@ -99,7 +125,6 @@ public class LocationsActivity extends FragmentActivity implements OnMapReadyCal
                 {
                     try
                     {
-//                        currentLatLng = new LatLng(LocationHelper.getLastLocation().getLatitude(), LocationHelper.getLastLocation().getLongitude());
 
                         URL url = new URL(HELLO_WORLD_URL);
                         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -127,6 +152,7 @@ public class LocationsActivity extends FragmentActivity implements OnMapReadyCal
                         JSONArray jsonArray = jsonObject.getJSONArray("locations");
 
                         int length = jsonArray.length();
+                        helloWorldLocations = new ArrayList<>();
                         for (int i = 0; i < length; i++)
                         {
                             JSONObject jsonLocation = (JSONObject) jsonArray.get(i);
@@ -154,6 +180,16 @@ public class LocationsActivity extends FragmentActivity implements OnMapReadyCal
 
         protected void onPostExecute (Void result)
         {
+            DBHelper dbHelper = HWApplication.getDBHelper();
+            try{
+                dbHelper.createOrOpenDatabase();
+                dbHelper.commitLocations(helloWorldLocations);
+            } catch(Exception e){
+                e.printStackTrace();
+            } finally
+            {
+                dbHelper.close();
+            }
             if(mapIsReady)
             {
                 for (HWLocation l : helloWorldLocations)

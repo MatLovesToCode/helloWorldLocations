@@ -1,6 +1,7 @@
 package com.training.android.helloworldlocations;
 
 import android.content.Context;
+import android.content.Intent;
 import android.location.Location;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -72,8 +73,13 @@ public class LocationAdapter extends ArrayAdapter<HWLocation>
             @Override
             public void onClick(View v)
             {
-//                Intent i = new Intent(getActivity(), ViewPagerActivity.class);
-//                startActivity(i);
+                Intent i = new Intent(context, LocationDetailedActivity.class);
+                i.putExtra("name", loc.getName());
+                i.putExtra("address", loc.getName());
+                i.putExtra("photoUrl", loc.getPictureLink());
+                i.putExtra("phone", loc.getPhoneNumber());
+
+                context.startActivity(i);
             }
         });
     }
