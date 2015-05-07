@@ -1,5 +1,11 @@
 package com.training.android.helloworldlocations.models;
 
+import android.location.Location;
+
+import com.training.android.helloworldlocations.LocationHelper;
+
+import java.util.Comparator;
+
 /**
  * Created by mwszedybyl on 5/4/15.
  */
@@ -130,5 +136,20 @@ public class HWLocation
 
     public String fullAddress() {
         return address + " " + address2 + ", " + city + " " + state + " " + zip;
+    }
+
+    public static class DistanceAwayComparator implements Comparator<HWLocation>
+    {
+        @Override
+        public int compare(HWLocation locA, HWLocation locB) {
+            Location locationA = new Location("");
+            locationA.setLatitude(locA.getLatitude());
+            locationA.setLongitude(locA.getLongitude());
+            Location locationB = new Location("");
+            locationB.setLatitude(locB.getLatitude());
+            locationB.setLongitude(locB.getLongitude());
+
+            return (int) (LocationHelper.getLastLocation().distanceTo(locationA) - LocationHelper.getLastLocation().distanceTo(locationB));
+        }
     }
 }

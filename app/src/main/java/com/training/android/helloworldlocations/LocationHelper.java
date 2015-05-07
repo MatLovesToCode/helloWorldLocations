@@ -33,6 +33,13 @@ public class LocationHelper implements GoogleApiClient.ConnectionCallbacks, Goog
 
     private LocationHelper() {
         buildGoogleApiClient();
+        double lat = HWApplication.getSharedPreferences().getFloat(Settings.LATITUDE, 0.0f);
+        double lng = HWApplication.getSharedPreferences().getFloat(Settings.LONGITUDE, 0.0f);
+        if(lat != 0.0f && lng != 0.0f) {
+            lastLocation = new Location("");
+            lastLocation.setLatitude(lat);
+            lastLocation.setLongitude(lng);
+        }
     }
 
     public static LocationHelper getInstance() {

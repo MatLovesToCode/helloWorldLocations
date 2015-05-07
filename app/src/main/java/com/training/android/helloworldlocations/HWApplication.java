@@ -29,8 +29,8 @@ public class HWApplication extends android.app.Application
     public void onCreate() {
         super.onCreate();
         instance = this;
-        LocationHelper.getInstance();
         sharedPreferences = getSharedPreferences(Settings.FILE_NAME, MODE_PRIVATE);
+        LocationHelper.getInstance();
 
         dbHelper = DBHelper.getInstance(this);
         dbHelper.createOrOpenDatabase();

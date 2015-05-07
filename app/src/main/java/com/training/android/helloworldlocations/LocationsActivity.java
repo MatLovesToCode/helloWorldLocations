@@ -32,6 +32,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 /**
@@ -59,7 +60,10 @@ public class  LocationsActivity extends FragmentActivity implements OnMapReadyCa
         locationListView = (ListView) findViewById(R.id.locations_listview);
         MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.location_map);
         mapFragment.getMapAsync(this);
-        currentLatLng = new LatLng(42.474636, -83.143986);
+        if(LocationHelper.getLastLocation()==null)
+        {
+            currentLatLng = new LatLng(42.474636, -83.143986);
+        }
         mapIsReady = false;
     }
 
@@ -96,6 +100,10 @@ public class  LocationsActivity extends FragmentActivity implements OnMapReadyCa
             if(helloWorldLocations.size()!=0){
                 adapter = new LocationAdapter(getBaseContext(), R.layout.location_list_item, helloWorldLocations);
                 locationListView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+                currentLatLng = new LatLng(LocationHelper.getLastLocation().getLatitude(), LocationHelper.getLastLocation().getLongitude());
+                map.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 12));
+
             } else {
                 new NearbyLocationLoader().execute();
             }
@@ -126,11 +134,14 @@ public class  LocationsActivity extends FragmentActivity implements OnMapReadyCa
             LatLng location = new LatLng(l.getLatitude(), l.getLongitude());
             map.addMarker(new MarkerOptions().position(location).snippet(""+l.getName()));
         }
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 12));
+
     }
 
     @Override
     public void doOnGetCurrentLocation(Location location) {
         currentLatLng = new LatLng(LocationHelper.getLastLocation().getLatitude(), LocationHelper.getLastLocation().getLongitude());
+        Collections.sort(helloWorldLocations, new HWLocation.DistanceAwayComparator());
         adapter = new LocationAdapter(getBaseContext(), R.layout.location_list_item, helloWorldLocations);
         adapter.notifyDataSetChanged();
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 12));
@@ -220,6 +231,7 @@ public class  LocationsActivity extends FragmentActivity implements OnMapReadyCa
                     LatLng location = new LatLng(l.getLatitude(), l.getLongitude());
                     map.addMarker(new MarkerOptions().position(location).snippet(""+l.getName()));
                 }
+                Collections.sort(helloWorldLocations, new HWLocation.DistanceAwayComparator());
                 adapter = new LocationAdapter(getBaseContext(), R.layout.location_list_item, helloWorldLocations);
                 locationListView.setAdapter(adapter);
                 map.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 12));

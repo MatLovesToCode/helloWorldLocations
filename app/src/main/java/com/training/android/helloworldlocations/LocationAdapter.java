@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.training.android.helloworldlocations.models.HWLocation;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -21,10 +22,14 @@ public class LocationAdapter extends ArrayAdapter<HWLocation>
     private Context context;
     private List<HWLocation> locationList;
 
-    public LocationAdapter(Context context, int resource, List<HWLocation> locationList) {
+    public LocationAdapter(Context context, int resource, List<HWLocation> helloWorldLocations) {
         super(context, resource);
         this.context = context;
-        this.locationList = locationList;
+        if(LocationHelper.getLastLocation()!=null)
+        {
+            Collections.sort(helloWorldLocations, new HWLocation.DistanceAwayComparator());
+        }
+        this.locationList = helloWorldLocations;
     }
 
     @Override
