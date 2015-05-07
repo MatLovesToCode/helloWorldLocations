@@ -37,7 +37,7 @@ import java.util.HashMap;
 /**
  * Created by mwszedybyl on 5/6/15.
  */
-public class LocationsActivity extends FragmentActivity implements OnMapReadyCallback, MapListener
+public class  LocationsActivity extends FragmentActivity implements OnMapReadyCallback, MapListener
 {
 
     public static final String HELLO_WORLD_URL = "http://www.helloworld.com/helloworld_locations.json";
@@ -74,7 +74,7 @@ public class LocationsActivity extends FragmentActivity implements OnMapReadyCal
                 HWLocation loc = adapter.getItem(position);
                 Intent i = new Intent(LocationsActivity.this, LocationDetailActivity.class);
                 i.putExtra("name", loc.getName());
-                i.putExtra("address", loc.getName());
+                i.putExtra("address", loc.fullAddress());
                 i.putExtra("photoUrl", loc.getPictureLink());
                 i.putExtra("phone", loc.getPhoneNumber());
                 i.putExtra("lat", loc.getLatitude());
@@ -142,62 +142,62 @@ public class LocationsActivity extends FragmentActivity implements OnMapReadyCal
         @Override
         protected Void doInBackground(Void... voids)
         {
-                ConnectivityManager connMgr = (ConnectivityManager) getBaseContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-                NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-                if (networkInfo != null && networkInfo.isConnected())
+            ConnectivityManager connMgr = (ConnectivityManager) getBaseContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+            if (networkInfo != null && networkInfo.isConnected())
+            {
+                try
                 {
-                    try
+
+                    URL url = new URL(HELLO_WORLD_URL);
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setReadTimeout(10000 /* milliseconds */);
+                    conn.setConnectTimeout(15000 /* milliseconds */);
+                    conn.setDoInput(true);
+                    conn.setDoOutput(true);
+                    conn.setRequestProperty("Content-Type", "application/json");
+                    conn.setRequestProperty("Accept", "application/json");
+                    conn.setRequestMethod("GET");
+                    // Starts the query
+                    conn.connect();
+
+                    // Get response
+                    BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
+                    StringBuilder sb = new StringBuilder();
+                    String line = null;
+                    while ((line = br.readLine()) != null)
                     {
-
-                        URL url = new URL(HELLO_WORLD_URL);
-                        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                        conn.setReadTimeout(10000 /* milliseconds */);
-                        conn.setConnectTimeout(15000 /* milliseconds */);
-                        conn.setDoInput(true);
-                        conn.setDoOutput(true);
-                        conn.setRequestProperty("Content-Type", "application/json");
-                        conn.setRequestProperty("Accept", "application/json");
-                        conn.setRequestMethod("GET");
-                        // Starts the query
-                        conn.connect();
-
-                        // Get response
-                        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
-                        StringBuilder sb = new StringBuilder();
-                        String line = null;
-                        while ((line = br.readLine()) != null)
-                        {
-                            sb.append(line + "\n");
-                        }
-                        br.close();
-
-                        JSONObject jsonObject = new JSONObject(sb.toString());
-                        JSONArray jsonArray = jsonObject.getJSONArray("locations");
-
-                        int length = jsonArray.length();
-                        helloWorldLocations = new ArrayList<>();
-                        for (int i = 0; i < length; i++)
-                        {
-                            JSONObject jsonLocation = (JSONObject) jsonArray.get(i);
-                            HWLocation hwLocation = new HWLocation();
-                            hwLocation.setName(jsonLocation.getString("name"));
-                            hwLocation.setAddress(jsonLocation.getString("address"));
-                            hwLocation.setAddress2(jsonLocation.getString("address2"));
-                            hwLocation.setCity(jsonLocation.getString("city"));
-                            hwLocation.setState(jsonLocation.getString("state"));
-                            hwLocation.setZip(jsonLocation.getString("zip_postal_code"));
-                            hwLocation.setPhoneNumber(jsonLocation.getString("phone"));
-                            hwLocation.setFax(jsonLocation.getString("fax"));
-                            hwLocation.setLatitude(jsonLocation.getDouble("latitude"));
-                            hwLocation.setLongitude(jsonLocation.getDouble("longitude"));
-                            hwLocation.setPictureLink(jsonLocation.getString("office_image"));
-                            helloWorldLocations.add(hwLocation);
-                        }
-                    } catch (Exception e)
-                    {
-                        Log.d("exception", "the error = " + e.getMessage());
+                        sb.append(line + "\n");
                     }
+                    br.close();
+
+                    JSONObject jsonObject = new JSONObject(sb.toString());
+                    JSONArray jsonArray = jsonObject.getJSONArray("locations");
+
+                    int length = jsonArray.length();
+                    helloWorldLocations = new ArrayList<>();
+                    for (int i = 0; i < length; i++)
+                    {
+                        JSONObject jsonLocation = (JSONObject) jsonArray.get(i);
+                        HWLocation hwLocation = new HWLocation();
+                        hwLocation.setName(jsonLocation.getString("name"));
+                        hwLocation.setAddress(jsonLocation.getString("address"));
+                        hwLocation.setAddress2(jsonLocation.getString("address2"));
+                        hwLocation.setCity(jsonLocation.getString("city"));
+                        hwLocation.setState(jsonLocation.getString("state"));
+                        hwLocation.setZip(jsonLocation.getString("zip_postal_code"));
+                        hwLocation.setPhoneNumber(jsonLocation.getString("phone"));
+                        hwLocation.setFax(jsonLocation.getString("fax"));
+                        hwLocation.setLatitude(jsonLocation.getDouble("latitude"));
+                        hwLocation.setLongitude(jsonLocation.getDouble("longitude"));
+                        hwLocation.setPictureLink(jsonLocation.getString("office_image"));
+                        helloWorldLocations.add(hwLocation);
+                    }
+                } catch (Exception e)
+                {
+                    Log.d("exception", "the error = " + e.getMessage());
                 }
+            }
             return null;
         }
 

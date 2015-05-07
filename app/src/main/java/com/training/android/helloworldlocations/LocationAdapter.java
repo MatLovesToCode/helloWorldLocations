@@ -57,7 +57,7 @@ public class LocationAdapter extends ArrayAdapter<HWLocation>
         TextView distance = (TextView) v.findViewById(R.id.distance);
 
         officeName.setText(loc.getName());
-        officeAddress.setText(loc.getAddress() + " " + loc.getAddress2() + ", " + loc.getCity() + " " + loc.getState() + " " + loc.getZip());
+        officeAddress.setText(loc.fullAddress());
         Location officeLocation = new Location("");
         officeLocation.setLatitude(loc.getLatitude());
         officeLocation.setLongitude(loc.getLongitude());
@@ -67,8 +67,6 @@ public class LocationAdapter extends ArrayAdapter<HWLocation>
             distanceFromUser = distanceFromUser / 1609.34;
             distance.setText("distance: " + String.format("%.2f", distanceFromUser) + " miles away");
         }
-
     }
-
 
 }

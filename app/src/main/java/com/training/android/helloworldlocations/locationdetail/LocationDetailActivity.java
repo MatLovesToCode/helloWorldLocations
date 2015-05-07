@@ -4,18 +4,13 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
-
 import com.training.android.helloworldlocations.R;
+
 
 /**
  * Created by mwszedybyl on 5/6/15.
  */
 public class LocationDetailActivity extends FragmentActivity {
-
-    private int phoneNumber;
-    private String officeName;
-    private String officeAddress;
-    private int distanceToLocation;
 
     private FragmentManager fm;
 

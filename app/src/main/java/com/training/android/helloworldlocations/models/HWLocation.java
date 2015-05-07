@@ -127,4 +127,8 @@ public class HWLocation
     {
         this.zip = zip;
     }
+
+    public String fullAddress() {
+        return address + " " + address2 + ", " + city + " " + state + " " + zip;
+    }
 }
