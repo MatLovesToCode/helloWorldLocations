@@ -1,6 +1,7 @@
 package com.training.android.helloworldlocations;
 
 import android.content.Context;
+import android.content.Intent;
 import android.location.Location;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -9,6 +10,8 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -18,6 +21,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.training.android.helloworldlocations.data.DBHelper;
+import com.training.android.helloworldlocations.locationdetail.LocationDetailActivity;
 import com.training.android.helloworldlocations.models.HWLocation;
 
 import org.json.JSONArray;
@@ -30,7 +34,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
+/**
+ * Created by mwszedybyl on 5/6/15.
+ */
 public class LocationsActivity extends FragmentActivity implements OnMapReadyCallback, MapListener
 {
 
@@ -55,6 +61,28 @@ public class LocationsActivity extends FragmentActivity implements OnMapReadyCal
         mapFragment.getMapAsync(this);
         currentLatLng = new LatLng(42.474636, -83.143986);
         mapIsReady = false;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        locationListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
+                HWLocation loc = adapter.getItem(position);
+                Intent i = new Intent(LocationsActivity.this, LocationDetailActivity.class);
+                i.putExtra("name", loc.getName());
+                i.putExtra("address", loc.getName());
+                i.putExtra("photoUrl", loc.getPictureLink());
+                i.putExtra("phone", loc.getPhoneNumber());
+                i.putExtra("lat", loc.getLatitude());
+                i.putExtra("long", loc.getLongitude());
+
+                startActivity(i);
+            }
+        });
         checkDbLocations();
 
     }
@@ -77,11 +105,6 @@ public class LocationsActivity extends FragmentActivity implements OnMapReadyCal
         {
             dbHelper.close();
         }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
     }
 
     @Override

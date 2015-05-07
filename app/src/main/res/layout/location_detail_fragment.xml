@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:weightSum="100"
+              android:orientation="vertical" android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#a7a7a7">
+
+    <ImageView android:id="@+id/static_map"
+               android:layout_width="match_parent"
+               android:layout_weight="60"
+               android:layout_height="0dp" />
+
+    <ImageView android:id="@+id/office_image"
+               android:layout_width="match_parent"
+               android:layout_height="0dp"
+               android:layout_weight="30"/>
+
+    <LinearLayout android:id="@+id/btn_wrapper"
+                  android:layout_width="match_parent"
+                  android:layout_height="0dp"
+                  android:orientation="horizontal"
+                  android:layout_weight="10"
+                  android:weightSum="100" >
+
+        <Button android:id="@+id/call_btn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="50"
+                android:text="Call"
+                android:textColor="#0088c7"
+                android:background="#555555"/>
+
+        <Button android:id="@+id/directions_btn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="50"
+                android:text="Directions"
+                android:textColor="#ff500e"
+                android:background="#555555"/>
+
+    </LinearLayout>
+
+</LinearLayout>
