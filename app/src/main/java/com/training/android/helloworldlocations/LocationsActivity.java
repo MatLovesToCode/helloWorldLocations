@@ -1,6 +1,7 @@
 package com.training.android.helloworldlocations;
 
 import android.content.Context;
+import android.location.Location;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -28,7 +29,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 
-public class LocationsActivity extends FragmentActivity implements OnMapReadyCallback
+public class LocationsActivity extends FragmentActivity implements OnMapReadyCallback, MapListener
 {
 
     public static final String HELLO_WORLD_URL = "http://www.helloworld.com/helloworld_locations.json";
@@ -43,15 +44,23 @@ public class LocationsActivity extends FragmentActivity implements OnMapReadyCal
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        LocationHelper.setMapListener(this);
+
         setContentView(R.layout.activity_locations);
         helloWorldLocations = new ArrayList<>();
         locationListView = (ListView) findViewById(R.id.locations_listview);
-        mapIsReady = false;
 
         MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.location_map);
         mapFragment.getMapAsync(this);
         new NearbyLocationLoader().execute();
-        new LastLocationLoader().execute();
+        currentLatLng = new LatLng(42.474636, -83.143986);
+
+        mapIsReady = false;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     @Override
@@ -68,13 +77,14 @@ public class LocationsActivity extends FragmentActivity implements OnMapReadyCal
         mapIsReady = true;
         this.map = map;
         map.setMyLocationEnabled(true);
+    }
 
-
-//        for (HWLocation l : helloWorldLocations)
-//        {
-//            LatLng location = new LatLng(l.getLatitude(), l.getLongitude());
-//            map.addMarker(new MarkerOptions().position(location).snippet("hi"));
-//        }
+    @Override
+    public void doOnGetCurrentLocation(Location location) {
+        currentLatLng = new LatLng(LocationHelper.getLastLocation().getLatitude(), LocationHelper.getLastLocation().getLongitude());
+        adapter = new LocationAdapter(getBaseContext(), R.layout.location_list_item, helloWorldLocations);
+        adapter.notifyDataSetChanged();
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 12));
 
     }
 
@@ -89,7 +99,7 @@ public class LocationsActivity extends FragmentActivity implements OnMapReadyCal
                 {
                     try
                     {
-                        currentLatLng = new LatLng(LocationHelper.getLastLocation().getLatitude(), LocationHelper.getLastLocation().getLongitude());
+//                        currentLatLng = new LatLng(LocationHelper.getLastLocation().getLatitude(), LocationHelper.getLastLocation().getLongitude());
 
                         URL url = new URL(HELLO_WORLD_URL);
                         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -151,42 +161,10 @@ public class LocationsActivity extends FragmentActivity implements OnMapReadyCal
                     LatLng location = new LatLng(l.getLatitude(), l.getLongitude());
                     map.addMarker(new MarkerOptions().position(location).snippet(""+l.getName()));
                 }
-                LatLng userLocation = new LatLng(42.3314, 83.0458);
-                map.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 12));
+                adapter = new LocationAdapter(getBaseContext(), R.layout.location_list_item, helloWorldLocations);
+                locationListView.setAdapter(adapter);
+                map.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 12));
             }
-
-        }
-    }
-
-
-    private class LastLocationLoader extends AsyncTask<Void, Void, Void>
-    {
-        @Override
-        protected Void doInBackground(Void... voids)
-        {
-            ConnectivityManager connMgr = (ConnectivityManager) getBaseContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-            if (networkInfo != null && networkInfo.isConnected())
-            {
-                try
-                {
-                    LocationHelper.getInstance();
-                    LocationHelper.
-                } catch (Exception e)
-                {
-                    Log.d("exception", "the error = " + e.getMessage());
-                }
-            }
-            return null;
-        }
-
-        protected void onPostExecute (Void result)
-        {
-            currentLatLng = new LatLng(LocationHelper.getLastLocation().getLatitude(), LocationHelper.getLastLocation().getLongitude());
-            adapter = new LocationAdapter(getBaseContext(), R.layout.location_list_item, helloWorldLocations);
-            locationListView.setAdapter(adapter);
-            map.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 12));
-
 
         }
     }

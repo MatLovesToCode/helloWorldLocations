@@ -1,5 +1,6 @@
 package com.training.android.helloworldlocations;
 
+import android.content.SharedPreferences;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,7 +28,8 @@ public class LocationHelper implements GoogleApiClient.ConnectionCallbacks, Goog
     private static String lastUpdateTime;
     private static LocationRequest locationRequest;
     private static boolean requestingLocationUpdates = true;
-    private GetLocationListener getLocationListener;
+    private static MapListener mapListener;
+    private SharedPreferences.Editor editor;
 
     private LocationHelper() {
         buildGoogleApiClient();
@@ -37,11 +39,10 @@ public class LocationHelper implements GoogleApiClient.ConnectionCallbacks, Goog
         if(instance == null) {
             instance = new LocationHelper();
         }
-        
         return instance;
     }
 
-    public synchronized void buildGoogleApiClient() {
+    private synchronized void buildGoogleApiClient() {
         Log.i(TAG, "Attempting to build GoogleApiClient object");
         if(GooglePlayServicesUtil.isGooglePlayServicesAvailable(HWApplication.getInstance()) == ConnectionResult.SUCCESS) {
             Log.i(TAG, "Google play services are installed and available on this device");
@@ -51,7 +52,12 @@ public class LocationHelper implements GoogleApiClient.ConnectionCallbacks, Goog
                     .addApi(LocationServices.API)
                     .build();
             googleApiClient.connect();
+            Log.i(TAG, "Building GoogleApiClient object successful, GoogleApiClient connected");
         }
+    }
+
+    public static void setMapListener(MapListener mapListener1) {
+        mapListener = mapListener1;
     }
 
     public static GoogleApiClient getGoogleApiClient(){
@@ -75,9 +81,12 @@ public class LocationHelper implements GoogleApiClient.ConnectionCallbacks, Goog
     @Override
     public void onConnected(Bundle connectionHint) {
         lastLocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
-        if(getLocationListener != null) {
-            getLocationListener.doOnComplete();
-        }
+        mapListener.doOnGetCurrentLocation(lastLocation);
+        editor = HWApplication.getInstance().getSharedPreferences().edit();
+        editor.putFloat(Settings.LATITUDE, (float)lastLocation.getLatitude());
+        editor.putFloat(Settings.LONGITUDE, (float)lastLocation.getLongitude());
+        editor.commit();
+
         if (requestingLocationUpdates) {
             createLocationRequest();
             startLocationUpdates();
@@ -103,9 +112,13 @@ public class LocationHelper implements GoogleApiClient.ConnectionCallbacks, Goog
         Log.i(TAG, "lastLocation.latitude = " + lastLocation.getLatitude() + ", lastLocation.longitude = " + lastLocation.getLongitude());
     }
 
+    protected void stopLocationUpdates() {
+        Log.i(TAG, "Stopping location updates");
+        LocationServices.FusedLocationApi.removeLocationUpdates(googleApiClient, this);
+    }
+
     // Get the last recorded location - May return null
     public static Location getLastLocation() {
         return lastLocation;
     }
-
 }

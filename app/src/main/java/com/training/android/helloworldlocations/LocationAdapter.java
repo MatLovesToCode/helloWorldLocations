@@ -67,6 +67,15 @@ public class LocationAdapter extends ArrayAdapter<HWLocation>
             distanceFromUser = distanceFromUser / 1609.34;
             distance.setText("distance: " + String.format("%.2f", distanceFromUser) + " miles away");
         }
+        v.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+//                Intent i = new Intent(getActivity(), ViewPagerActivity.class);
+//                startActivity(i);
+            }
+        });
     }
 
 
